@@ -1,7 +1,7 @@
 # Monorepo
 
-- [ ] *Shi Zhong* **(TODO: Change this heading to your name, because your github name is often not your real name)**
-- [ ] *Shi Zhong of your name here* **(TODO: Change this)**
+- [ ] *Shi Zhong* 
+- [ ] *Shi Zhong*
 
 ## Important Documents 
 
