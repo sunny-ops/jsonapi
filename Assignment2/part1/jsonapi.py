@@ -14,6 +14,9 @@ class ExtendedEncoder(json.JSONEncoder):
 
     def encode_complex(self, obj):
         return {"real": obj.real, "imag": obj.imag}
+    
+    def encode_range(self, obj):
+        return {"start":obj.start, "stop": obj.stop, "step": obj.step}
 
 class ExtendedDecoder(json.JSONDecoder):
     def __init__(self, *args, **kwargs):
@@ -29,6 +32,9 @@ class ExtendedDecoder(json.JSONDecoder):
 
     def decode_complex(self, dct):
         return complex(dct["real"], dct["imag"])
+    
+    def decode_range(self, dct):
+        return range(dct["start"], dct["stop"], dct["step"])
 
 def dumps(obj, *args, **kwargs):
     return json.dumps(obj, cls=ExtendedEncoder, *args, **kwargs)
@@ -36,11 +42,4 @@ def dumps(obj, *args, **kwargs):
 def loads(s, *args, **kwargs):
     return json.loads(s, cls=ExtendedDecoder, *args, **kwargs)
 
-# Test the extended library
-if __name__ == '__main__':
-    complex_num = 3 + 4j
-    print(dumps(['foo', {'bar': ('baz', None, 1.0, 2)}]))
-    encoded_data = dumps(complex_num)
-    print(encoded_data)
-    decoded_data = loads(encoded_data)
-    print(decoded_data)
+
